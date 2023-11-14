@@ -1,0 +1,10 @@
+moveon:
+  machineId: 1
+
+spring:
+  application:
+    name: moveon-boot
+  profiles:
+    active: dev
+server:
+  port: 8080
