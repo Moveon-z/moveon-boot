@@ -2,8 +2,11 @@ package com.moveon.boot.controller.system;
 
 import com.moveon.boot.core.Result;
 import com.moveon.boot.entity.system.SysUser;
+import com.moveon.boot.service.system.SysLoginService;
 import com.moveon.boot.service.system.SysUserService;
+import com.moveon.boot.service.system.adapter.SysLogin3rdAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,10 +25,13 @@ public class SysUserController {
     @Autowired
     private SysUserService sysUserService;
 
+    @Autowired
+    private SysLogin3rdAdapter sysLogin3rdAdapter;
+
     @PostMapping("/register")
     public Result registerUser(@RequestBody SysUser sysUser) {
         try {
-            sysUserService.registerUser(sysUser);
+            sysLogin3rdAdapter.registerUser(sysUser);
         } catch (Exception e) {
             e.printStackTrace();
             return Result.error("注册失败，原因：" + e.getMessage());
@@ -35,7 +41,7 @@ public class SysUserController {
 
     @PostMapping("/login")
     public Result login(@RequestBody SysUser sysUser) {
-        SysUser user = sysUserService.loginUser(sysUser.getUsername(), sysUser.getPassword());
+        SysUser user = sysLogin3rdAdapter.loginUser(sysUser.getUsername(), sysUser.getPassword());
         if (user != null) {
             return Result.success("登陆成功", user);
         } else {
@@ -63,13 +69,9 @@ public class SysUserController {
         }
     }
 
-    @RequestMapping("/test/{id}")
-    public Result test(@PathVariable("id") long id[]) {
-        List<SysUser> sysUser = sysUserService.list(id);
-        if (sysUser != null) {
-            return Result.success("成功", sysUser);
-        } else {
-            return Result.error("失败");
-        }
+    @GetMapping("/gitee")
+    public Result loginByGitee(String code, String state) {
+        String s = sysLogin3rdAdapter.loginByGitee(code, state);
+        return Result.success(s);
     }
 }

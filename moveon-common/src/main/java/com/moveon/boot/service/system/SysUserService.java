@@ -13,16 +13,9 @@ import com.moveon.boot.service.entity.BaseService;
 public interface SysUserService extends BaseService<SysUser> {
 
     /**
-     * 注册用户
-     * @param sysUser
-     */
-    void registerUser(SysUser sysUser);
-
-    /**
-     * 用户登录
+     * 判断用户是否存在
      * @param username
-     * @param password
      * @return
      */
-    SysUser loginUser(String username, String password);
+    boolean checkUserExist(String username);
 }

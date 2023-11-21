@@ -18,7 +18,7 @@ public class SysUser extends BaseEntity {
 
     /* 部门id */
     @TableField
-    private String deptId;
+    private Long deptId;
 
     /* 用户名 */
     @TableField
@@ -32,7 +32,9 @@ public class SysUser extends BaseEntity {
     @TableField
     private String password;
 
-    /* 用户类型 */
+    /* 用户类型
+    *
+    * */
     @TableField
     private String userType;
 
@@ -40,7 +42,9 @@ public class SysUser extends BaseEntity {
     @TableField
     private String email;
 
-    /* 性别 */
+    /* 性别
+    *  0:未知 1:男生 2: 女生
+    * */
     @TableField
     private String sex;
 
@@ -52,7 +56,9 @@ public class SysUser extends BaseEntity {
     @TableField
     private String avatar;
 
-    /* 用户状态 */
+    /* 用户状态
+    *  1:正常 2:停用
+    *  */
     @TableField
     private String status;
 
@@ -64,11 +70,11 @@ public class SysUser extends BaseEntity {
     @TableField
     private Date loginTime;
 
-    public String getDeptId() {
+    public Long getDeptId() {
         return deptId;
     }
 
-    public void setDeptId(String deptId) {
+    public void setDeptId(Long deptId) {
         this.deptId = deptId;
     }
 

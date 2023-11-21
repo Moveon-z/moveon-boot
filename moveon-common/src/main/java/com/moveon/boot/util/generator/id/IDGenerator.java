@@ -23,7 +23,7 @@ public class IDGenerator {
     private static long sequence = 0;
     private static long lastTimestamp = -1;
 
-    public static long generatorID() {
+    public static long createId() {
         long currentTimestamp = System.currentTimeMillis() - EPOCH;
 
         if (currentTimestamp < lastTimestamp) {

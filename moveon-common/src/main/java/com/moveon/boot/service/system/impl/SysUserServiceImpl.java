@@ -28,35 +28,10 @@ public class SysUserServiceImpl extends AutoBaseServiceImpl<SysUser> implements 
     private AuthenticationManager authenticationManager;
 
     @Override
-    public void registerUser(SysUser sysUser) {
+    public boolean checkUserExist(String username) {
         SysUser user = new SysUser();
-        user.setUsername(sysUser.getUsername());
-        SysUser getUserByUsername = get(user);
-        if (getUserByUsername != null) {
-            throw new RuntimeException("该用户名已存在");
-        }
-        sysUser.setPassword(SecurityUtils.encryptPassword(sysUser.getPassword()));
-        insert(sysUser);
-    }
-
-    @Override
-    public SysUser loginUser(String username, String password) {
-        Authentication authenticate = null;
-        try {
-            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
-            AuthenticationContextHolder.setContext(authenticationToken);
-            authenticate = authenticationManager.authenticate(authenticationToken);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-        if (Objects.isNull(authenticate)) {
-            throw new RuntimeException("登陆失败");
-        }
-        LoginUser loginUser = (LoginUser) authenticate.getPrincipal();
-        String id = loginUser.getSysUser().getId().toString();
-        loginUser.setUsername(username);
-//        loginUser.setPassword();
-        return loginUser.getSysUser();
+        user.setUsername(username);
+        SysUser user1 = get(user);
+        return (user1 != null);
     }
 }

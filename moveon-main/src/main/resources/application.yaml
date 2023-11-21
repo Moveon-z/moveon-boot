@@ -8,3 +8,7 @@ spring:
     active: dev
 server:
   port: 8080
+
+mybatis:
+  type-aliases-package: com.moveon.**.entity
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
