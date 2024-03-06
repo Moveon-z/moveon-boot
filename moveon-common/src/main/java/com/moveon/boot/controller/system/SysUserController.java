@@ -74,4 +74,12 @@ public class SysUserController {
         String s = sysLogin3rdAdapter.loginByGitee(code, state);
         return Result.success(s);
     }
+
+    @GetMapping("/loginTest")
+    public Result loginTest() {
+        SysUser sysUser = new SysUser();
+        sysUser.setUsername("moveon");
+        SysUser sysUser1 = sysUserService.get(sysUser);
+        return Result.success("success", sysUser1);
+    }
 }
