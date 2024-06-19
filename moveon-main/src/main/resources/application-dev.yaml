@@ -1,9 +1,7 @@
 spring:
   rabbitmq:
-    host: 10.43.2.242
-    port: 5672
-    username: guest
-    password: guest
+    username: moveon
+    password: Mufeng0827.
   datasource:
     url: jdbc:mysql://101.43.2.242:3306/moveon_boot?useUnicode=true&characterEncoding=utf-8
     driver-class-name: com.mysql.cj.jdbc.Driver
