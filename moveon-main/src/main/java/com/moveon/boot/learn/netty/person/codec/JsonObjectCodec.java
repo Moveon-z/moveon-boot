@@ -25,8 +25,6 @@ public class JsonObjectCodec extends MessageToMessageCodec<ByteBuf, Response> {
         buf.writeByte(msg.getSequenceId());
         buf.writeByte(msg.getMessageType());
         Gson gson = new Gson();
-        gson.toJson()
-        buf.writeInt()
     }
 
     @Override
