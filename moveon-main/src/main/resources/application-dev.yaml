@@ -3,10 +3,10 @@ spring:
     username: moveon
     password: Mufeng0827.
   datasource:
-    url: jdbc:mysql://101.43.2.242:3306/moveon_boot?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://localhost:3306/moveon_boot?useUnicode=true&characterEncoding=utf-8
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: Moveon0827
+    password: root
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
       minimum-idle: 5
@@ -15,7 +15,7 @@ spring:
       connection-timeout: 30000
       idle-timeout: 60000
   redis:
-    host: 101.43.2.242
+    host: localhost
     port: 6379
 gitee:
   clientId: 6ae933f941fabfb8cbc0496a14ee1807edbe7c24f444674be4d70ad9be767089
@@ -28,6 +28,8 @@ gitee:
   token:
     url: https://gitee.com/oauth/token?grant_type=authorization_code&client_id=${gitee.clientId}&client_secret=${gitee.clientSecret}&redirect_uri=${gitee.callBack}&code=
 
+netty:
+  port: 8089
 
 #moveon:
 #  thread:
